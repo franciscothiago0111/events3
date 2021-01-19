@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="col-md-10 offset-md-1 dashboard-title-container">
-    <h2>Meus Eventos</h2>
+    <h3>Meus Eventos</h3>
     
 </div>
 
@@ -46,7 +46,7 @@
 
 
 <div class="col-md-10 offset-md-1 dashboard-title-container">
-    <h2>Eventos que estou participando</h2>    
+    <h3>Presença confirmada</h3>    
 </div>
 
 <div class="col-md-10 offset-md-1 dashboard-events-container">
@@ -69,7 +69,11 @@
                     <td><a href="/events/{{ $event->id }}">{{ $event->title }}</a></td>
                     <td>{{ count($event->users) }}</td>
                     <td>
-                        <a href="#">Sair do evento</a>
+                    <form action="/events/leave/{{$event->id}}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger"><ion-icon name="exit-outline"></ion-icon> Sair</button>
+                    </form>
                     </td>
                 </tr>
             @endforeach    
